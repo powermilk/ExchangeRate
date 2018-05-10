@@ -26,8 +26,10 @@ https://github.com/powermilk/ExchangeRate.git
 You can build this project with [Maven](https://maven.apache.org/), so dependencies are automatically downloaded and imported, but for your information I listed what technologies are used in this repository:
 
 Code:
-- [Java 8](https://www.java.com/pl/download/) - If you want to develop this application you will need [JDK](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html). Java is programming language what I used to write this program. I used version 8 and code have Comparator and method reference.
+- [Java 8](https://www.java.com/pl/download/) - If you want to develop this application you will need [JDK](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html). Java is programming language what I used to write this program. I used version 8 and some features like lambdas, Streams, Comparator and method reference.
 - [Logback](https://logback.qos.ch/) - Library for terminal logs.
+- [Gson](https://github.com/google/gson) - A serialization or deserialization library to convert Java Objects into JSON and back from Google.
+
 
 Testing
 - [JUnit 5](https://junit.org/junit5) - The testing Framework.

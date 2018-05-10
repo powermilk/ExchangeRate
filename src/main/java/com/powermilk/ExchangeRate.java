@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.Comparator;
+import java.util.Optional;
 
 public class ExchangeRate {
 
@@ -15,9 +16,9 @@ public class ExchangeRate {
     private static InputStreamReader reader;
     private static ExchangeDataPOJO exchangeDataPOJO;
 
-    private final Comparator<RatePOJO> comp = (Comparator.comparingDouble(RatePOJO::getMid));
+    private final Comparator<RatePOJO> comparator = (Comparator.comparingDouble(RatePOJO::getMid));
 
-    public ExchangeRate(String urlAddress) {
+    public ExchangeRate(String urlAddress) throws IOException {
         try {
             url = new URL(urlAddress);
             reader = new InputStreamReader(url.openStream());
@@ -27,6 +28,8 @@ public class ExchangeRate {
         }
         catch (IOException e) {
             e.printStackTrace();
+            System.out.println(e.getMessage());
+            throw e;
         }
 
     }
@@ -35,11 +38,23 @@ public class ExchangeRate {
         exchangeDataPOJO = new Gson().fromJson(reader, ExchangeDataPOJO.class);
     }
 
-    public double getMin() {
-        return exchangeDataPOJO.getRates().stream().min(comp).get().getMid();
+    double getMin() throws Exception {
+        Optional<RatePOJO> value = exchangeDataPOJO.getRates().stream().min(comparator);
+
+        if (value.isPresent()) {
+            return value.get().getMid();
+        }
+
+        throw new Exception("I can't get minimal value");
     }
 
-    public double getMax() {
-        return exchangeDataPOJO.getRates().stream().max(comp).get().getMid();
+    double getMax() throws Exception {
+        Optional<RatePOJO> value = exchangeDataPOJO.getRates().stream().max(comparator);
+
+        if (value.isPresent()) {
+            return value.get().getMid();
+        }
+
+        throw new Exception("I can't get maximum value");
     }
 }

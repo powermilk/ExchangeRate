@@ -1,6 +1,9 @@
 package com.powermilk;
 
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.platform.runner.JUnitPlatform;
 import org.junit.platform.suite.api.SelectPackages;
 import org.junit.runner.RunWith;
@@ -13,8 +16,7 @@ import java.io.FileReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 @RunWith(JUnitPlatform.class)
 @DisplayName("Testing ExchangeRate class")
@@ -41,15 +43,15 @@ class ExchangeRateTest {
     }
 
     @Test
-    @Disabled("Need to be better written")
     @DisplayName("Should throws MalformedURLException")
     void shouldThrowMalformedURLException() {
         String badUrl = "htp://api.nbp.pl/api/exchangerates/rates/a/gbp/last/10/?format=json";
+
         Throwable exception = assertThrows(MalformedURLException.class,
                 () -> new ExchangeRate(badUrl));
 
         assertEquals(exception.getMessage(), "unknown protocol: htp");
-        log.info("Test passed!");
+        log.info("Test checking MalformedURLException was thrown passed!");
     }
 
     @Test
@@ -64,8 +66,8 @@ class ExchangeRateTest {
             exchangeRate = new ExchangeRate(fileReader);
         });
 
-        assertEquals(exception.getMessage(), null);
-        log.info("Test passed!");
+        assertNull(exception.getMessage());
+        log.info("Test checking NullPointerException was thrown passed!");
     }
 
     @Test
@@ -78,22 +80,22 @@ class ExchangeRateTest {
         });
 
         assertEquals(exception.getMessage(), "NonExist.json (Nie ma takiego pliku ani katalogu)");
-        log.info("Test passed!");
+        log.info("Test checking FileNotFoundException was thrown passed!");
     }
 
     @Test
-    @DisplayName("Getting max value")
-    void shouldReturnMaxValue() {
+    @DisplayName("Getting maximum value")
+    void shouldReturnMaxValue() throws Exception {
         double max = exchangeRate.getMax();
         assertEquals(4.7387D, max);
-        log.info("Test passed!");
+        log.info("Test checking that maximum value was got passed!");
     }
 
     @Test
-    @DisplayName("Getting min value")
-    void shouldReturnMinValue() {
+    @DisplayName("Getting minimum value")
+    void shouldReturnMinValue() throws Exception {
         double min = exchangeRate.getMin();
         assertEquals(4.6663D, min);
-        log.info("Test passed!");
+        log.info("Test checking that minimum value was got passed!");
     }
 }
