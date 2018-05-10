@@ -3,6 +3,7 @@ package com.powermilk;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 import org.jetbrains.annotations.Contract;
 
 public class RatePOJO {
@@ -10,13 +11,13 @@ public class RatePOJO {
     private final String effectiveDate;
     private final double mid;
 
-    public RatePOJO() {
+    RatePOJO() {
         this.no = null;
         this.effectiveDate = null;
         mid = 0.0d;
     }
 
-    public RatePOJO(String no, String effectiveDate, double mid) {
+    RatePOJO(String no, String effectiveDate, double mid) {
         this.no = no;
         this.effectiveDate = effectiveDate;
         this.mid = mid;
@@ -60,11 +61,14 @@ public class RatePOJO {
 
     @Override
     public int hashCode() {
-        return new HashCodeBuilder().append(no).append(effectiveDate).append(mid).build();
+        return new HashCodeBuilder()
+                .append(no)
+                .append(effectiveDate)
+                .append(mid).build();
     }
 
     @Override
     public String toString() {
-        return ToStringBuilder.reflectionToString(this);
+        return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
     }
 }

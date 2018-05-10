@@ -145,13 +145,11 @@ class ExchangeDataPOJOTest {
     @Test
     @DisplayName("Test that toString() is generating empty string")
     void shouldGenerateEmptyString() {
-
         ExchangeDataPOJO newData = new ExchangeDataPOJO();
-
         String actual = newData.toString();
 
-        final String regex = "^com\\.powermilk\\.ExchangeDataPOJO@\\w+\\[table=<null>,currency=<null>,code=<null>," +
-                "rates=<null>]$";
+        final String regex = "^com\\.powermilk\\.ExchangeDataPOJO@\\w+\\[\\n\\s+table=<null>\\n\\s+currency=<null>" +
+                "\\n\\s+code=<null>\\n\\s+rates=<null>\\n]$";
 
         assertTrue(actual.matches(regex));
 
@@ -163,13 +161,12 @@ class ExchangeDataPOJOTest {
     void shouldGenerateValidString() {
         String actual = exchangeDataPOJO.toString();
 
-        final String regex = "^com\\.powermilk\\.ExchangeDataPOJO@\\w+\\[table=C,currency=funt szterling," +
-                "code=GBP,rates=\\[com\\.powermilk\\.RatePOJO@\\w+\\[no=247/A/NBP/2017,effectiveDate=2017-12-21," +
-                "mid=4\\.7318], com\\.powermilk\\.RatePOJO@\\w+\\[no=248/A/NBP/2017,effectiveDate=2017-12-22," +
-                "mid=4\\.7387]]]$";
+        final String regex = "^com\\.powermilk\\.ExchangeDataPOJO@\\w+\\[\\n\\s+table=C\\n\\s+currency=funt " +
+                "szterling\\n\\s+code=GBP\\n\\s+rates=\\[com\\.powermilk\\.RatePOJO@\\w+\\[\\n\\s+no=247/A/NBP/2017" +
+                "\\n\\s+effectiveDate=2017-12-21\\n\\s+mid=4\\.7318\\n], com\\.powermilk\\.RatePOJO@\\w+\\[\\n\\s+" +
+                "no=248/A/NBP/2017\\n\\s+effectiveDate=2017-12-22\\n\\s+mid=4\\.7387\\n]]\\n]$";
 
         assertTrue(actual.matches(regex));
-
         log.info("Test for checking that toString() is generating properly!");
     }
 

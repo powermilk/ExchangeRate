@@ -131,9 +131,9 @@ class RatePOJOTest {
     @DisplayName("Test that toString() is generating empty string")
     void shouldGenerateEmptyString() {
         RatePOJO newRatePOJO = new RatePOJO();
-
         String actual = newRatePOJO.toString();
-        String expected = "^com\\.powermilk\\.RatePOJO@\\w+\\[no=<null>,effectiveDate=<null>,mid=0.0]$";
+        String expected = "^com\\.powermilk\\.RatePOJO@\\w+\\[\\n\\s+no=<null>\\n\\s+effectiveDate=<null>\\n\\s+" +
+                "mid=0.0\\n]$";
 
         assertTrue(actual.matches(expected));
 
@@ -144,8 +144,8 @@ class RatePOJOTest {
     @DisplayName("Test that toString() is generating properly")
     void shouldGenerateValidString() {
         String actual = ratePOJO.toString();
-        String expected = "^com\\.powermilk\\.RatePOJO@\\w+\\[no=247/A/NBP/2017,effectiveDate=2017-12-21,mid=" +
-                "4.7318]$";
+        String expected = "^com\\.powermilk\\.RatePOJO@\\w+\\[\\n\\s+no=247/A/NBP/2017\\n\\s+effectiveDate=2017-12-21" +
+                "\\n\\s+mid=4.7318\\n]$";
 
         assertTrue(actual.matches(expected));
 

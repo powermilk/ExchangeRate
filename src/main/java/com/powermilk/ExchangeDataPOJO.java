@@ -3,6 +3,7 @@ package com.powermilk;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 import org.jetbrains.annotations.Contract;
 
 import java.util.List;
@@ -13,14 +14,14 @@ public class ExchangeDataPOJO {
     private final String code;
     private final List<RatePOJO> rates;
 
-    public ExchangeDataPOJO(String table, String currency, String code, List<RatePOJO> rates) {
+    ExchangeDataPOJO(String table, String currency, String code, List<RatePOJO> rates) {
         this.table = table;
         this.currency = currency;
         this.code = code;
         this.rates = rates;
     }
 
-    public ExchangeDataPOJO() {
+    ExchangeDataPOJO() {
         this.table = null;
         this.currency = null;
         this.code = null;
@@ -75,6 +76,6 @@ public class ExchangeDataPOJO {
 
     @Override
     public String toString() {
-        return ToStringBuilder.reflectionToString(this);
+        return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
     }
 }
