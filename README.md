@@ -62,4 +62,3 @@ We use [SemVer](http://semver.org/) for versioning.
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](https://gist.github.com/powermilk/9f5c5cc4b1151f5e4e27cd6ae73a5da1) file for details
-
